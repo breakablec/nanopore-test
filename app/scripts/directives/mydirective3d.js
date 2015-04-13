@@ -7,12 +7,43 @@
  * # myDirective3d
  */
 angular.module('nanoporetestApp')
-  .directive('myDirective3d', function () {
+  .directive('myDirective3d', ['d3Service', function (d3) {
     return {
-      template: '<div></div>',
-      restrict: 'E',
+      template: '',
+      restrict: 'C',
+      scope: { dataset: '=' },
+      controller: function($scope, $element){
+
+      },
       link: function postLink(scope, element, attrs) {
-        element.text('this is the myDirective3d directive');
+        //Wait for d3 to initalize over the factory
+        d3.d3().then(function (d3) {
+          var height = 200;
+          var width = 200;
+          var vScale = 50;
+          var hScale = 50;
+          var svg = d3.select(element[0]).append("svg").attr("width", width).attr("height", height);
+          var dataset = scope.dataset;
+          //Draw the Rectangle
+          var rectangle = svg.selectAll('rect')
+            .data(dataset)
+            .enter()
+            .append('rect')
+            .attr({
+              class:'bar',
+              width:'10px',
+              height:function(d) {
+              var barHeight = d * vScale;
+                return barHeight + 'px';
+              },
+              x:function(d,i) {
+                return i * hScale;
+              },
+              y:function(d,i) {
+                return height - (d * vScale);
+              }
+            });
+        });
       }
     };
-  });
+  }]);

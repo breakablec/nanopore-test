@@ -11,6 +11,6 @@
 angular.module('nanoporetestApp')
   .filter('myFilterSmtng', function () {
     return function (input) {
-      return 'myFilterSmtng filter: ' + input;
+      return 'Chart NR:' + input;
     };
   });
