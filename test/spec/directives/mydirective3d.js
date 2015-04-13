@@ -12,9 +12,9 @@ describe('Directive: myDirective3d', function () {
     scope = $rootScope.$new();
   }));
 
-  it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<my-directive3d></my-directive3d>');
+  it('should create a directive', inject(function ($compile) {
+    element = angular.element('<my-directive-3d ng-attr-dataset="[1]"></my-directive-3d>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the myDirective3d directive');
+    expect(element[0].outerHTML).toContain('my-directive-3d');
   }));
 });

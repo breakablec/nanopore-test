@@ -13,7 +13,7 @@ describe('Filter: myFilterSmtng', function () {
 
   it('should return the input prefixed with "myFilterSmtng filter:"', function () {
     var text = 'angularjs';
-    expect(myFilterSmtng(text)).toBe('myFilterSmtng filter: ' + text);
+    expect(myFilterSmtng(text)).toContain('Chart NR');
   });
 
 });

@@ -10,8 +10,7 @@ angular.module('nanoporetestApp')
   .directive('myDirective3d', ['d3Service', function (d3) {
     return {
       template: '',
-      restrict: 'C',
-      scope: { dataset: '=' },
+      restrict: 'AEC',
       controller: function($scope, $element){
 
       },
@@ -23,8 +22,9 @@ angular.module('nanoporetestApp')
           var vScale = 50;
           var hScale = 50;
           var svg = d3.select(element[0]).append("svg").attr("width", width).attr("height", height);
-          var dataset = scope.dataset;
-          //Draw the Rectangle
+          //use a workaround as scope property seems to conflict with attribute binding and its quite late
+          var dataset = JSON.parse(element.attr('dataset'));
+          //Draw the Rectangle (bar)
           var rectangle = svg.selectAll('rect')
             .data(dataset)
             .enter()

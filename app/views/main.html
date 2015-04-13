@@ -1,7 +1,4 @@
-<div>{{1|myFilterSmtng}}</div>
-
-<div class = "my-directive-3d" dataset="[1,2,3,4]"></div>
-
-<div>{{2|myFilterSmtng}}</div>
-
-<div class = "my-directive-3d" dataset="[5,4,3,2,1]"></div>
+<div ng-repeat="dt in charts">
+    <div>{{$index|myFilterSmtng}}</div>
+    <div class = "my-directive-3d" ng-attr-dataset={{dt}}></div>
+</div>
